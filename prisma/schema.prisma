@@ -1,11 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma/client"
-}
-
-datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  output   = "../generated/prisma"
 }
 
 model User {
@@ -22,4 +17,9 @@ model Post {
   published Boolean @default(false)
   author    User    @relation(fields: [authorId], references: [id])
   authorId  Int
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
